@@ -33,10 +33,6 @@ WelsonJS - Build a Windows desktop apps with JavaScript, HTML, and CSS based on 
 - lib/cloudflare ([Cloudflare Argo Tunnel](https://catswords.re.kr/go/argotunnel) interface)
 - lib/shadowsocks ([Shadowsocks](https://catswords.re.kr/go/shadowsocks) interface)
 - lib/excel (Microsoft Excel interface)
-- lib/vbscript (VBScript interface)
-- lib/wintap (Windows-TAP interface)
-- lib/tun2socks (TUN2SOCKS interface)
-- lib/hosts (Hosts file interface)
 
 ## Make your own `sayhello` example
 
@@ -67,12 +63,12 @@ hello
 
 ## Related projects
 - [gnh1201/wsh-js-gtk](https://catswords.re.kr/go/wshjsgtk) - GTK GUI ported to Windows Scripting Host - Javascript (Microsoft JScript) (wsh-js)
-- [gnh1201/wsh-json](https://catswords.re.kr/go//wshjson) - JSON stringify/parse (encode/decode) for Windows Scripting Host
+- [gnh1201/wsh-json](https://catswords.re.kr/go/wshjson) - JSON stringify/parse (encode/decode) for Windows Scripting Host
 - [redskyit/wsh-appjs](https://catswords.re.kr/go/wshappjs) - require-js and app framework for Windows Scripting Host JavaScript
 - [JohnLaTwC's gist](https://catswords.re.kr/go/johnlatwcgist) - JavaScript RAT
 - [JSMan-/JS-Framework](https://catswords.re.kr/go/jsmanfw) - No description
 - [iconjack/setTimeout-for-windows-script-host](https://catswords.re.kr/go/wshtimer) - Replacement for the missing setTimeout and clearTimeout function in Windows Script Host
-- [johnjohnsp1/WindowsScriptHostExtension](https://catswords.re.kr/go/actctx) - Inject DLL Prototype using Microsoft.Windows.ACTCTX COM Object
+- [johnjohnsp1/RegistrationFreeCOM](https://catswords.re.kr/go/actctx) - Inject DLL Prototype using Microsoft.Windows.ACTCTX COM Object
 - [kuntashov/jsunit](https://catswords.re.kr/go/wshjsunit) - JSUnit port for Windows Scripting Host
 
 ## Contact me

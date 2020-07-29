@@ -1,5 +1,3 @@
 @echo off
 
-start app.hta &
-
-echo done
+cscript app.js bootstrap

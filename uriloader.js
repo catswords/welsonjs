@@ -1,53 +1,59 @@
-/*
- * uriloader.js
- */
- 
+//////////////////////////////////////////////////////////////////////////////////
+//
+//    uriloader.js
+//
+/////////////////////////////////////////////////////////////////////////////////
+
 var SHELL = require("lib/shell");
+var URI = require("lib/uri");
 
-return {
-    parseQuery: function(queryString) {
-        var query = {};
-        var pairs = (queryString.substring(0, 1) === '?' ? queryString.substring(1) : queryString).split('&');
-        for (var i = 0; i < pairs.length; i++) {
-            var pair = pairs[i].split('=');
-            query[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1] || '');
+exports.main = function(args) {
+    var uri = args[0];
+    var pos = uri.indexOf(":///");
+    if(pos < 0) {
+        console.log("Not vaild URI scheme");
+    } else {
+        var cmd = [],
+            queryString = uri.substring(pos + 4),
+            query = URI.parseQueryString(queryString);
+
+        if(!query.application) {
+            query.application = "";
         }
-        return query;
-    },
-    main: function(args) {
-        var uri = args[0];
-        var pos = uri.indexOf(':///');
-        if(pos < 0) {
-            console.log("Not vaild URI");
-        } else {
-            var queryString = uri.substring(pos + 4);
-            var query = this.parseQuery(queryString);
-            var application = query['application'];
-            var argument = query['argument'];
-            var filename;
 
-            switch(application) {
-                case "mscalc":
-                    filename = "calc";
-                    break;
-                case "msexcel":
-                    filename = "%PROGRAMFILES%\\Microsoft Office\\Office15\\EXCEL.EXE";
-                    break;
-                case "mspowerpoint":
-                    filename = "%PROGRAMFILES%\\Microsoft Office\\Office15\\POWERPNT.EXE";
-                    break;
-                case "msword":
-                    filename = "%PROGRAMFILES%\\Microsoft Office\\Office15\\WINWORD.EXE";
-                    break;
-                case "msaccess":
-                    filename = "%PROGRAMFILES%\\Microsoft Office\\Office15\\MSACCESS.EXE";
-                    break;
-                dafault:
-                    console.log("Unknown application");
-                    break;
-            }
-
-            SHELL.run("\"" + filename + "\"" + " " + argument);
+        switch(query.application) {
+            case "app":
+                cmd.push("app.hta");
+                break;
+            case "mscalc":
+                cmd.push("calc.exe");
+                break;
+            case "msie":
+                cmd.push("%PROGRAMFILES%\\Internet Explorer\\iexplore.exe");
+                cmd.push("https://github.com/gnh1201/welsonjs");
+                break;
+            case "msexcel":
+                cmd.push("%PROGRAMFILES%\\Microsoft Office\\Office15\\EXCEL.EXE");
+                break;
+            case "mspowerpoint":
+                cmd.push("%PROGRAMFILES%\\Microsoft Office\\Office15\\POWERPNT.EXE");
+                break;
+            case "msword":
+                cmd.push("%PROGRAMFILES%\\Microsoft Office\\Office15\\WINWORD.EXE");
+                break;
+            case "msaccess":
+                cmd.push("%PROGRAMFILES%\\Microsoft Office\\Office15\\MSACCESS.EXE");
+                break;
+            dafault:
+                console.log("Unknown application");
         }
+
+        if(typeof(query.args) !== "undefined") {
+            cmd.push(query.args);
+        }
+
+        SHELL.run(cmd);
     }
-}
+
+    return 0;
+};
